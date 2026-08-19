@@ -11,16 +11,16 @@ void DFS(int start) {
   stack<int> st;
   st.push(start);
 
+  vis[start]=true; // mark visited, then push its unvisited children
+  
   while (!st.empty()) {
     int u = st.top();
     st.pop();
 
     if (vis[u]) continue;
-
-    vis[u] = true;  // mark visited, then push its unvisited children
-
+  
     for (int v : adj[u]) {
-      if (!vis[v]) st.push(v);
+      if (!vis[v]) st.push(v),vis[v]=true;
     }
 
     // To match the same visiting order as the recursive version, push
